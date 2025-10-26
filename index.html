@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExxonMobil Qatar - Fueling Qatar's Progress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --secondary-blue: #004b8d;
+            --accent-gold: #d4af37;
+            --light-gold: #f5e8c8;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 51, 102, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 2rem;
+            background-color: var(--primary-blue);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Home Section */
+        .home-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 2rem;
+        }
+
+        .slide-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .slide-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .slide.active .slide-title,
+        .slide.active .slide-subtitle {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        .highlights {
+            padding: 5rem 2rem;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .highlights-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23003366" stroke-width="0.5" opacity="0.1"/><path d="M0,50 L100,50 M50,0 L50,100" fill="none" stroke="%23003366" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 200px;
+            z-index: -1;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 3rem;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Operations Section */
+        .operations-section {
+            padding: 5rem 2rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .operations-section .section-title {
+            color: var(--white);
+        }
+
+        .operations-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        .operation-card {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .operation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        .operation-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 51, 102, 0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .operation-card:hover .operation-bg {
+            transform: scale(1.1);
+        }
+
+        .operation-card:hover .operation-overlay {
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 51, 102, 0.9) 100%);
+        }
+
+        .operation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .operation-desc {
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .operation-card:hover .operation-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+        }
+
+        /* Investor Section */
+        .investor-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-gray);
+        }
+
+        .investor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .investor-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .investor-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .investor-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .shares-badge {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        .investor-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .investor-reasons {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .reasons-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .reasons-list {
+            list-style: none;
+        }
+
+        .reasons-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .reasons-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .investor-chart {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .partners-section {
+            margin-top: 3rem;
+        }
+
+        .partners-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .partners-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .partners-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .partner-logo {
+            flex: 0 0 auto;
+            width: 150px;
+            height: 80px;
+            background-color: var(--white);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-slogan {
+            font-size: 1.2rem;
+            color: var(--light-gold);
+            font-style: italic;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-links-list {
+            list-style: none;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links-list a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links-list a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-blue);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .slide-title {
+                font-size: 2.5rem;
+            }
+            
+            .slide-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .slide-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .highlight-card, .operation-card {
+                min-width: 100%;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .contact-btn {
+            display: inline-block;
+            background: #004aad;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s ease;
+            animation: pulse 5s infinite;
+        }
+
+        .contact-btn:hover {
+            background: #344666;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/unnamed.jpg" alt="ExxonMobil Qatar Logo" class="logo-img">
+            <div class="logo-text">ExxonMobil Qatar</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#operations">Our Operations</a></li>
+            <li><a href="#investor">Investor Relations</a></li>
+        </ul>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="home-section">
+        <div class="slider">
+            <div class="slide active" style="background-image: url('images/ant-rozetsky-SLIFI67jv5k-unsplash.jpg');">
+                <div class="slide-overlay">
+                    <h1 class="slide-title">Powering Qatar's Energy Future</h1>
+                    <p class="slide-subtitle">Leading innovation in oil and gas exploration and production</p>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/crystal-kwok-mhUsz2ezlXQ-unsplash.jpg');">
+                <div class="slide-overlay">
+                    <h1 class="slide-title">Sustainable Energy Solutions</h1>
+                    <p class="slide-subtitle">Committed to environmental stewardship and community development</p>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/crystal-kwok-xD5SWy7hMbw-unsplash.jpg');">
+                <div class="slide-overlay">
+                    <h1 class="slide-title">Global Partnerships</h1>
+                    <p class="slide-subtitle">Building lasting relationships for a prosperous energy future</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+        </div>
+    </section>
+
+    <section class="highlights">
+        <h2 class="section-title">Our Commitment to Excellence</h2>
+        <div class="highlights-container">
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-search-location"></i>
+                </div>
+                <h3 class="highlight-title">Exploration & Production</h3>
+                <p>Utilizing cutting-edge technology to discover and develop energy resources in Qatar's most promising fields.</p>
+            </div>
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="highlight-title">Sustainability & Innovation</h3>
+                <p>Implementing environmentally responsible practices while advancing energy technologies for future generations.</p>
+            </div>
+            <div class="highlight-card fade-in">
+                <div class="highlight-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="highlight-title">Global Partnerships</h3>
+                <p>Collaborating with international stakeholders to drive economic growth and energy security in Qatar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <div class="about-bg"></div>
+        <h2 class="section-title">About ExxonMobil Qatar</h2>
+        <div class="about-container">
+            <div class="about-content fade-in">
+                <h3>Leading Qatar's Energy Sector for Over Two Decades</h3>
+                <p class="about-text">ExxonMobil Qatar has been at the forefront of the nation's oil and gas industry since 1998, driving innovation and sustainable development in one of the world's most important energy regions.</p>
+                <p class="about-text">Our vision is to provide reliable energy solutions while maintaining the highest standards of safety, environmental responsibility, and community engagement. We are committed to supporting Qatar's National Vision 2030 through strategic investments and technological advancements.</p>
+                <p class="about-text">With a dedicated team of over 5,000 professionals, ExxonMobil Qatar continues to expand its operations, strengthen partnerships, and contribute to the nation's economic prosperity.</p>
+            </div>
+            <div class="about-image fade-in">
+                
+                <!-- Placeholder for about image -->
+                <img src="images/unnamed.jpg" alt="ExxonMobil Qatar About Us" class="about-img">
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Operations Section -->
+    <section id="operations" class="operations-section">
+        <h2 class="section-title">Our Operations</h2>
+        <div class="operations-container">
+            <div class="operation-card fade-in">
+                <div class="operation-bg" style="background-image: url('images/oil2.jpg');"></div>
+                <div class="operation-overlay">
+                    <h3 class="operation-title">Offshore Exploration</h3>
+                    <p class="operation-desc">Advanced seismic imaging and drilling technologies to unlock Qatar's offshore energy potential.</p>
+                </div>
+            </div>
+            <div class="operation-card fade-in">
+                <div class="operation-bg" style="background-image: url('images/paul-teysen-VODj-TWKpRA-unsplash.jpg');"></div>
+                <div class="operation-overlay">
+                    <h3 class="operation-title">Refining & Production</h3>
+                    <p class="operation-desc">State-of-the-art facilities processing over 1 million barrels daily with maximum efficiency.</p>
+                </div>
+            </div>
+            <div class="operation-card fade-in">
+                <div class="operation-bg" style="background-image: url('images/istockphoto-1395132512-612x612.jpg');"></div>
+                <div class="operation-overlay">
+                    <h3 class="operation-title">Distribution & Export</h3>
+                    <p class="operation-desc">Global logistics network ensuring reliable delivery of energy products to international markets.</p>
+                </div>
+            </div>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item fade-in">
+                <div class="stat-number">20+</div>
+                <div class="stat-text">Years of Energy Leadership</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number">1M+</div>
+                <div class="stat-text">Barrels Produced Daily</div>
+            </div>
+            <div class="stat-item fade-in">
+                <div class="stat-number">5000+</div>
+                <div class="stat-text">Employees Worldwide</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investor Relations Section -->
+    <section id="investor" class="investor-section">
+        <div class="investor-container">
+            <div class="investor-header">
+                <h2 class="investor-title">Partner with ExxonMobil Qatar</h2>
+                <p class="investor-subtitle">Join us as we expand our energy frontiers. ExxonMobil Qatar is currently offering shares for investment in our next phase of growth and development.</p>
+                <div class="shares-badge">Now Selling Shares</div>
+            </div>
+            <div class="investor-content">
+                <div class="investor-reasons fade-in">
+                    <h3 class="reasons-title">Why Invest With Us</h3>
+                    <ul class="reasons-list">
+                        <li>Proven track record of consistent growth and profitability</li>
+                        <li>Strategic position in one of the world's most important energy regions</li>
+                        <li>Commitment to innovation and technological advancement</li>
+                        <li>Strong partnerships with Qatar's leading energy institutions</li>
+                        <li>Focus on sustainable operations and long-term value creation</li>
+                        <li>Experienced leadership team with deep industry expertise</li>
+                    </ul>
+                </div>
+                <div class="investor-chart fade-in" style="background: #003366;">
+                    <h3 class="chart-title" style="color: #ffffff;">INVEST NOW</h3>
+                    <p class="chart-title" style="color: #ffffff;">Announcement: ExxonMobil Qatar is currently offering company shares for purchase. This offering is open to qualified investors. For 
+                        full terms, documentation, and to request investor materials, please contact our Investor Relations team below. 
+                    </p>
+                </div>
+            </div>
+            <div class="investor-header">
+                <a href="mailto:exxonmobilqatarsharesonline@gmail.com?subject=Website%20Inquiry&body=Hello%20ExxonMobil%20Qatar%20Shares%20Team," class="contact-btn">Click Here! to Send Us an Email</a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="footer-logo-text">ExxonMobil Qatar</div>
+                <div class="footer-slogan">Fueling Qatar's Progress</div>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-links-title">Quick Links</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#operations">Our Operations</a></li>
+                    <li><a href="#investor">Investor Relations</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ExxonMobil Qatar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Image Slider
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Auto slide change every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        function checkScroll() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial check
+        checkScroll();
+
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
+    </script>
+</body>
+</html>
